@@ -3,6 +3,17 @@ import { MovieContext } from "../../Context/MovieContext";
 import Container from "../GlobalComponents/Container";
 import Loader from "../GlobalComponents/Loader";
 import "./Movies.css";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+// import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+import MovieItem from "./MovieItem";
 
 const style = {
   position: "absolute",
@@ -18,10 +29,14 @@ const style = {
 
 const Movies = () => {
   const { movies, isLoading } = useContext(MovieContext);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  // const a = (movieItem) => {
-  //   console.log(movieItem);
-  // };
+  const a = (movieItem) =>{
+    console.log(movieItem);
+
+  }
   return (
     <div className="movies">
       <Container className="container">
@@ -31,12 +46,16 @@ const Movies = () => {
         {!isLoading ? (
           movies.results &&
           movies.results.map((movieItem, index) => (
-            <img
-              key={index}
-              src={`https://image.tmdb.org/t/p/w400/${movieItem.poster_path}`}
-              alt="poster"
-            />
-            // <button onClick={() => a(movieItem)}>click</button>
+            <div key={index} className="img">
+              
+              <MovieItem movieItem={movieItem} />
+              {/* <button onClick={() => a(movieItem)}>click</button> */}
+            </div>
+            // <img
+            //   key={index}
+            //   src={`https://image.tmdb.org/t/p/w400/${movieItem.poster_path}`}
+            //   alt="poster"
+            // />
           ))
         ) : (
           <Loader />
