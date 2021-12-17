@@ -1,0 +1,23 @@
+.navSearch {
+  height: 40px;
+  min-height: 40px;
+}
+.search {
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  border: 1px solid #2c2f39;
+  background: transparent;
+  padding: 10px 16px;
+  width: 260px;
+  color: #ffa5a5;
+}
+.search::placeholder {
+  color: #ffa5a5;
+  letter-spacing: 1px;
+}
+@media (max-width: 860px) {
+  .search {
+    width: 220px;
+  }
+}

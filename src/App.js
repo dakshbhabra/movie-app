@@ -3,6 +3,8 @@ import "./App.css";
 import fire from "./fire";
 import Movie from "./Movie";
 import Login from "./Login";
+import { MovieState } from "./Context/MovieContext";
+import Hero from "./components/Hero/MainPage";
 
 function App() {
   const [user, setUser] = useState("");
@@ -85,8 +87,11 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <Movie user={user} handleLogout={handleLogout} />
+        <MovieState>
+          <Hero user={user} handleLogout={handleLogout} />
+        </MovieState>
       ) : (
+        // <Movie user={user} handleLogout={handleLogout} />
         <Login
           email={email}
           setEmail={setEmail}

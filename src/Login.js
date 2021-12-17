@@ -17,13 +17,13 @@ function Login(props) {
 
   const [title, setTitle] = useState("Sign Up");
   const changeTitle = () => {
-      setHasAccount(!hasAccount);
-      if(!hasAccount) {
-        setTitle("Login");
-      } else {
-        setTitle("Sign Up")
-      }
-  }
+    setHasAccount(!hasAccount);
+    if (!hasAccount) {
+      setTitle("Login");
+    } else {
+      setTitle("Sign Up");
+    }
+  };
 
   return (
     <section className="login">
@@ -49,7 +49,13 @@ function Login(props) {
         <div className="btnContainer">
           {hasAccount ? (
             <>
-              <button disabled={!email || !password} onClick={handleLogin}>
+              <button
+                style={{
+                  cursor: password && email ? "pointer" : "not-allowed",
+                }}
+                disabled={!email || !password}
+                onClick={handleLogin}
+              >
                 Sign In
               </button>
               <p>
@@ -59,7 +65,13 @@ function Login(props) {
             </>
           ) : (
             <>
-              <button disabled={!email || !password} onClick={handleSignup}>
+              <button
+                style={{
+                  cursor: password && email ? "pointer" : "not-allowed",
+                }}
+                disabled={!email || !password}
+                onClick={handleSignup}
+              >
                 Sign Up
               </button>
               <p>

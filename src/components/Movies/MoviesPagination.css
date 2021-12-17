@@ -1,0 +1,27 @@
+.moviesPagination {
+  width: 100%;
+}
+.moviesPagination > .container:nth-child(1) {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn {
+  border: none;
+  outline: none;
+  background: #32de57;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  width: 160px;
+  padding: 10px 0;
+  cursor:pointer;
+  user-select: none;
+  margin: 0 10px;
+  transition: background 500ms ease-in-out;
+}
+.btn:hover {
+  background: #259a3e;
+}
