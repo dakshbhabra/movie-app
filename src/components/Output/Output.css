@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
-@media (max-width: 1365px) {
+@media (max-width: 1600px) {
   .output > .container {
     max-width: 90%;
   }

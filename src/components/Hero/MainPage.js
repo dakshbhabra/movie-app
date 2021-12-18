@@ -1,10 +1,14 @@
 import MainPageNav from "./MainPageNav/MainPageNav";
 import Output from "../Output/Output";
 import "./MainPage.css";
-const MainPage = ({ user, handleLogout }) => {
+const MainPage = ({ dark, handleTheme, user, handleLogout }) => {
   return (
-    <section className="hero">
-      <MainPageNav user={user} handleLogout={handleLogout} />
+    <section className={dark ? "dark" : "hero"}>
+      <MainPageNav
+        handleTheme={handleTheme}
+        user={user}
+        handleLogout={handleLogout}
+      />
       <Output />
     </section>
   );

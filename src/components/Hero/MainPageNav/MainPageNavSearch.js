@@ -3,18 +3,18 @@ import { MovieContext } from "../../../Context/MovieContext";
 import "./MainPageNavSearch.css";
 const MainPageNavSearch = () => {
   const { search, setSearch, handleSearch } = useContext(MovieContext);
-  // const showResult = (e) => {
-  //   // console.log(e.target.value)
-  //   e.preventDefault();
-  //   setSearch(e.target.value);
-  //   setTimeout(() => {
-  //     handleSearch();
-  //   }, 250);
-  // }
+    // const showResult = (e) => {
+    //   // console.log(e.target.value)
+    //   e.preventDefault();
+    //   setSearch(e.target.value);
+    //   setTimeout(() => {
+    //     handleSearch();
+    //   }, 250);
+    // }
   return (
     <form
       className="navSearch"
-      // onChange={(e) => showResult(e)}
+      onChange={handleSearch}
       onSubmit={handleSearch}
     >
       <input

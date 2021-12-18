@@ -26,7 +26,7 @@ function Login(props) {
   };
 
   return (
-    <section className="login">
+    <form onSubmit={handleLogin} className="login">
       <div className="loginContainer">
         <div className="title">{title}</div>
         <label>UserName</label>
@@ -52,6 +52,7 @@ function Login(props) {
               <button
                 style={{
                   cursor: password && email ? "pointer" : "not-allowed",
+                  backgroundColor: password && email && "#23a7db",
                 }}
                 disabled={!email || !password}
                 onClick={handleLogin}
@@ -68,6 +69,7 @@ function Login(props) {
               <button
                 style={{
                   cursor: password && email ? "pointer" : "not-allowed",
+                  backgroundColor: password && email && "#23a7db",
                 }}
                 disabled={!email || !password}
                 onClick={handleSignup}
@@ -81,7 +83,7 @@ function Login(props) {
           )}
         </div>
       </div>
-    </section>
+    </form>
   );
 }
 

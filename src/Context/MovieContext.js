@@ -4,7 +4,7 @@ export const MovieContext = createContext();
 
 export const MovieState = ({ children }) => {
   const [showPagination, setShowPagination] = useState(true);
-
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const [movies, setMovies] = useState([]);
@@ -20,7 +20,7 @@ export const MovieState = ({ children }) => {
       `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${currentPage}`
     );
     const data = await response.json();
-    if (search.trim() === "") {
+    if (search.trim() === "" || search.trim().length<3) {
       setMovies(data);
     }
   };
@@ -28,14 +28,15 @@ export const MovieState = ({ children }) => {
   const handleSearch = async (e) => {
     e.preventDefault();
     if (search.trim() === "" || search.trim().length < 3) {
+      setShowPagination(true);
       return;
     }
     const searchResponse = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${search}&page=${currentPage}`
-    );
-    const searchData = await searchResponse.json();
-    setMovies(searchData);
-    setShowPagination(false);
+      );
+      const searchData = await searchResponse.json();
+      setMovies(searchData);
+      setShowPagination(false);
   };
 
   const newPage = (direction) => {
@@ -48,7 +49,7 @@ export const MovieState = ({ children }) => {
   };
 
   useEffect(() => {
-    if (search.trim() === "") {
+    if (search.trim() === "" || search.trim().length <= 3) {
       setShowPagination(true);
     }
     getMovies();

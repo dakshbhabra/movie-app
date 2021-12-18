@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import fire from "./fire";
-import Movie from "./Movie";
+// import Movie from "./Movie";
 import Login from "./Login";
 import { MovieState } from "./Context/MovieContext";
-import Hero from "./components/Hero/MainPage";
+// import Hero from "./components/Hero/MainPage";
+import MainPage from "./components/Hero/MainPage";
 
 function App() {
   const [user, setUser] = useState("");
@@ -13,7 +14,11 @@ function App() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState("");
-
+  const [dark, setDark] = useState(false);
+  const handleTheme = () => {
+    setDark(!dark);
+    console.log(!dark);
+  };
   useEffect(() => {
     authListner();
   }, []);
@@ -88,7 +93,12 @@ function App() {
     <div className="App">
       {user ? (
         <MovieState>
-          <Hero user={user} handleLogout={handleLogout} />
+          <MainPage
+            dark={dark}
+            handleTheme={handleTheme}
+            user={user}
+            handleLogout={handleLogout}
+          />
         </MovieState>
       ) : (
         // <Movie user={user} handleLogout={handleLogout} />

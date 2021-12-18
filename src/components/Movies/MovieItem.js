@@ -1,13 +1,12 @@
-import react, { useState } from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-// import Typography from '@mui/material/Typography';
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Rating } from "@mui/material";
+import Box from "@mui/material/Box";
+import StarIcon from "@mui/icons-material/Star";
 
 const style = {
   position: "absolute",
@@ -25,15 +24,41 @@ export default function MovieItem({ movieItem }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const value = movieItem.vote_average / 2;
+  const labels = [
+    {5: "Excellent+"},
+    {4.5: "Excellent"},
+    {4: "Good+"},
+    {3.5: "Good"},
+    {3: "Ok+"},
+    {2.5: "Ok"},
+    {2: "Poor+"},
+    {1.5: "Poor"},
+    {1: "Useless+"},
+    {0.5: "Useless"},
+];
+  function getRating(val) {
+    if(val === 0) return "No rating";
+    for (let x in labels) {
+      if (Object.keys(labels[x])[0] <= val)  return Object.values(labels[x])[0];
+    }
+    return "No rating";
+  }
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
+  // const getInfo = () => {
+  //   console.log(movieItem);
+  // };
   return (
     <div>
       <Card
         onClick={handleOpen}
-        sx={{ minWidth: 250, maxHeight: 350, minHeight: 350 }}
+        sx={{
+          minWidth: 250,
+          maxHeight: 350,
+          minHeight: 350,
+        }}
       >
         <CardActionArea>
           <CardMedia
@@ -55,6 +80,23 @@ export default function MovieItem({ movieItem }) {
                 ? "No Description Available"
                 : truncate(movieItem?.overview, 50)}
             </Typography>
+            <Box
+              sx={{
+                display: "flex",
+              }}
+            >
+              <Rating
+                name="text-feedback"
+                value={value}
+                readOnly
+                precision={0.5}
+                emptyIcon={
+                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                }
+              />
+              <Box sx={{ ml: 2 }}>{getRating(value)}</Box>
+            </Box>
+            {/* <button onClick={getInfo}>click</button> */}
           </CardContent>
         </CardActionArea>
       </Card>
@@ -70,8 +112,12 @@ export default function MovieItem({ movieItem }) {
               <CardMedia
                 component="img"
                 height="200"
-                image={`https://image.tmdb.org/t/p/w400/${movieItem.poster_path}`}
-                alt="https://www.electiondataservices.com/wp-content/uploads/2014/10/sorry-image-not-available.jpg"
+                image={
+                  movieItem?.poster_path
+                    ? `https://image.tmdb.org/t/p/w400/${movieItem.poster_path}`
+                    : "https://www.electiondataservices.com/wp-content/uploads/2014/10/sorry-image-not-available.jpg"
+                }
+                alt={movieItem.original_title}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -82,6 +128,24 @@ export default function MovieItem({ movieItem }) {
                     ? "No Description Available"
                     : movieItem.overview}
                 </Typography>
+                <Box
+                  sx={{
+                    width: 200,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Rating
+                    name="text-feedback"
+                    value={value}
+                    readOnly
+                    precision={0.5}
+                    emptyIcon={
+                      <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                    }
+                  />
+                  <Box sx={{ ml: 2 }}>{getRating(value)}</Box>
+                </Box>
               </CardContent>
             </CardActionArea>
           </Card>
