@@ -7,6 +7,7 @@
 .nav > .container {
   display: flex;
   align-items: center;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
 }
 .nav > .container > .wrapper {
@@ -16,5 +17,25 @@
 @media (max-width: 1600px) {
   .nav .container {
     max-width: 90%;
+  }
+}
+
+@media (max-width: 660px) {
+  .nav > .container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .nav > .container > .wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 200px;
+  }
+  .avatar{
+    max-width: 30px;
+  }
+  .logout{
+    /* max-width: 50px; */
   }
 }

@@ -5,6 +5,7 @@ import Loader from "../GlobalComponents/Loader";
 import "./Movies.css";
 import * as React from 'react';
 import MovieItem from "./MovieItem";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 // const style = {
 //   position: "absolute",
@@ -19,7 +20,7 @@ import MovieItem from "./MovieItem";
 // };
 
 const Movies = () => {
-  const { movies, isLoading } = useContext(MovieContext);
+  const { movies, isLoading, handleSearch } = useContext(MovieContext);
   // const [open, setOpen] = React.useState(false);
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
@@ -32,21 +33,18 @@ const Movies = () => {
     <div className="movies">
       <Container className="container">
         {movies.results && movies.results.length === 0 && (
-          <h1 className="error">Result not found</h1>
+          <div className="notFound">
+            <h1 className="error">Result not found</h1>
+            <RefreshIcon fontSize="large" sx={{cursor:"pointer"}} onClick={handleSearch} />
+          </div>
         )}
         {!isLoading ? (
           movies.results &&
           movies.results.map((movieItem, index) => (
             <div key={index} className="img">
-              
               <MovieItem movieItem={movieItem} />
               {/* <button onClick={() => a(movieItem)}>click</button> */}
             </div>
-            // <img
-            //   key={index}
-            //   src={`https://image.tmdb.org/t/p/w400/${movieItem.poster_path}`}
-            //   alt="poster"
-            // />
           ))
         ) : (
           <Loader />

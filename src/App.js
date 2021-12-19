@@ -72,7 +72,6 @@ function App() {
         }
       });
     // console.log(user);
-    // if(!user) console.log(fire.auth.createCustomToken(user));
   };
 
   const handleLogout = () => {

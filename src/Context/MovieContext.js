@@ -29,6 +29,7 @@ export const MovieState = ({ children }) => {
     e.preventDefault();
     if (search.trim() === "" || search.trim().length < 3) {
       setShowPagination(true);
+      getMovies();
       return;
     }
     const searchResponse = await fetch(

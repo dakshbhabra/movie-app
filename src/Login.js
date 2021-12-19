@@ -28,7 +28,6 @@ function Login(props) {
   return (
     <form onSubmit={handleLogin} className="login">
       <div className="loginContainer">
-        <div className="title">{title}</div>
         <label>UserName</label>
         <input
           type="text"

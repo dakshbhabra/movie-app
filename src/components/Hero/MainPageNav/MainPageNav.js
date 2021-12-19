@@ -29,13 +29,14 @@ const MainPageNav = ({ handleTheme, user, handleLogout }) => {
           <MainPageNavLogo />
         </div>
         <MainPageNavSearch />
-        <MainPageNavLogOut handleLogout={handleLogout} />
-        {/* <button onClick={a}>click</button> */}
+        <MainPageNavLogOut className="logout"
+        handleLogout={handleLogout} />
         <BrightnessLowIcon onClick={handleTheme} sx={{ color: "#fff", cursor:"pointer" }} />
         <img
           style={{
             maxHeight: "50px",
           }}
+          className="avatar"
           src={`https://ui-avatars.com/api/?name=${user.email}&size=20&background=fff&color=f12819&length=1&rounded=true`}
         />
       </Container>

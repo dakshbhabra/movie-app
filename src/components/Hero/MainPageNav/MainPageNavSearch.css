@@ -21,3 +21,12 @@
     width: 220px;
   }
 }
+@media (max-width: 660px) {
+  .navSearch {
+    height: 40px;
+    max-width: 100px;
+  }
+  .search{
+    max-width: 100px;
+  }
+}
